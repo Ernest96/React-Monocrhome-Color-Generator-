@@ -1,3 +1,1 @@
-#### Values JS
-
-[values.js](https://github.com/noeldelgado/values.js)
+Find the app live here: (https://monochrome-colors.netlify.app/)
