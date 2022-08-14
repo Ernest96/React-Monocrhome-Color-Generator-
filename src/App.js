@@ -3,8 +3,6 @@ import SingleColor from './SingleColor'
 import { ChromePicker } from 'react-color';
 import Values from 'values.js'
 
-
-
 function App() {
 
   const [color, setColor] = useState('');
@@ -17,8 +15,6 @@ function App() {
     console.log(hexColor);
 
     try {
-
-
       let colors = new Values(hexColor).all(10);
       setList(colors);
 
@@ -29,8 +25,6 @@ function App() {
     setColor({ background: color.hex });
 
   };
-
-
 
   return <>
 
