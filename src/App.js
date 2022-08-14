@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SingleColor from './SingleColor'
-
+import { ChromePicker } from 'react-color';
 import Values from 'values.js'
 
 
@@ -8,48 +8,49 @@ import Values from 'values.js'
 function App() {
 
   const [color, setColor] = useState('');
-  const [error, setError] = useState(false);
-  const [list, setList] = useState(new Values('#f15025').all(10));
+  const [list, setList] = useState(new Values('#22194D').all(10));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleColorChange = (color) => {
+
+    const hexColor = color.hex;
+
+    console.log(hexColor);
 
     try {
 
-      setError(false);
 
-      let colors = new Values(color).all(10);
+      let colors = new Values(hexColor).all(10);
       setList(colors);
-      console.log(colors);
 
     } catch (error) {
-      setError(true);
       console.log(error);
     }
 
-  }
+    setColor({ background: color.hex });
+
+  };
+
+
 
   return <>
-    <section className="container">
-      <h4>color generator</h4>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={color} 
-          onChange={(e) => setColor(e.target.value)} 
-          placeholder="#f15025"
-          className={`${error ? 'error' : ''}`} />
-          <button className='btn' type='submit'>
-            Submit
-          </button>
-      </form>
-    </section>
+
+    <br />
+
+    <div className='colorpicker'>
+      <ChromePicker color={color.background}
+        disableAlpha={true}
+        onChange={handleColorChange} />
+    </div>
+
+    <br />
 
     <section className="colors">
       {list.map((color, index) => {
-        return <SingleColor key={index} 
-           {...color}
-           index={index}>
+        return <SingleColor key={index}
+          {...color}
+          index={index}>
 
-          </SingleColor>
+        </SingleColor>
       })}
     </section>
   </>

@@ -5,7 +5,6 @@ const SingleColor = ({rgb, weight, index}) => {
   const [alert, setAlert] = useState(false);
   const bcg = rgb.join(',');
   const hexColor = rgbToHex(...rgb);
-  const lightColor = index > 10 && 'color-light';
 
   const copyToClipboard = () => {
     setAlert(true);
@@ -18,13 +17,14 @@ const SingleColor = ({rgb, weight, index}) => {
 
 
   return (
-    <article className={`color ${lightColor}`}
+    <article className={`color`}
       style={{backgroundColor: `rgb(${bcg})`}}
       onClick={copyToClipboard}>
         <p className='percent-value'> {weight}% </p>
+        <br/>
         <p className='color-value'>{hexColor}</p>
-
-        {alert && <p className={`alert ${lightColor}`}> Copied to Clipboard</p>}
+        <br/>
+        {alert && <p className={`alert`}> Copied to Clipboard</p>}
 
     </article>
   )
